@@ -14,7 +14,7 @@
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License: MIT">
   </a>
-  <a href="https://huggingface.co/spaces/your-username/meeting-policy-checker">
+  <a href="[https://huggingface.co/spaces/virginialevy/meeting-policy-checker](https://huggingface.co/spaces/virginialevy/meeting-policy-checker)">
     <img src="https://img.shields.io/badge/🤗%20Hugging%20Face-Space-orange" alt="Hugging Face Space">
   </a>
 </p>
