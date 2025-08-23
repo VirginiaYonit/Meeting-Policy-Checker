@@ -45,3 +45,11 @@ jobs:
         run: |
           pytest -q -k test_basic -vv
 
+      - name: Debug tree
+        run: |
+          pwd
+          ls -la
+          find . -maxdepth 3 -type d -name "meeting_policy_checker" -print
+
+
+
