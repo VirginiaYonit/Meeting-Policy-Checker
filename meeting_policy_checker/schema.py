@@ -1,91 +1,59 @@
+from __future__ import annotations
 from enum import Enum
-from typing import List, Optional, Literal
-from pydantic import BaseModel, Field, validator
-
+from typing import List, Optional, Literal, Dict, Any
+from pydantic import BaseModel, Field
 
 class MeetingType(str, Enum):
     agenda = "agenda"
     transcript = "transcript"
 
-
 class Strictness(str, Enum):
+    normal = "normal"
     strict = "strict"
-    advisory = "advisory"
-
-
-class FindingStatus(str, Enum):
-    pass_ = "pass"
-    fail = "fail"
-    warn = "warn"
-    not_applicable = "not_applicable"
-
-
-class RiskLevel(str, Enum):
-    low = "low"
-    medium = "medium"
-    high = "high"
-
 
 class OrgContext(BaseModel):
-    department: Optional[str] = None
-    locale: Optional[str] = None
-    timezone: Optional[str] = None
-    confidentiality_level: Optional[
-        Literal["public", "internal", "confidential", "restricted"]
-    ] = None
-
+    value: str
 
 class InputPayload(BaseModel):
-    policy_text: str = Field(
-        ..., min_length=10, description="Org meeting policy in markdown/text"
-    )
-    meeting_text: str = Field(..., min_length=10, description="Agenda or transcript")
+    policy_text: str = Field(min_length=1)
+    meeting_text: str = Field(min_length=1)
     meeting_type: MeetingType
+    strictness: Strictness
     checks: Optional[List[str]] = None
-    strictness: Strictness = Strictness.advisory
+    max_suggestions: Optional[int] = 0
+    return_format: Optional[str] = "json"
     org_context: Optional[OrgContext] = None
-    max_suggestions: int = 5
-    return_format: Literal["json", "markdown", "both"] = "json"
-
-    @validator("max_suggestions")
-    def _cap_suggestions(cls, v):
-        return max(1, min(v, 10))
-
-
-class Finding(BaseModel):
-    rule_id: str
-    status: FindingStatus
-    evidence: Optional[str] = None
-    explanation: str
-    risk: RiskLevel = RiskLevel.low
-    proposed_fix: Optional[str] = None
-
-
-class Summary(BaseModel):
-    overall: Literal["compliant", "non_compliant", "needs_review"]
-    score: int = Field(ge=0, le=100)
-    high_risk_flags: List[str] = []
-
-
-class AutoRewrite(BaseModel):
-    enabled: bool = False
-    revised_agenda_or_note: Optional[str] = None
-
 
 class GuardrailTrace(BaseModel):
-    input_validated: bool
-    output_schema_validated: bool
+    input_validated: bool = False
+    output_schema_validated: bool = False
     truncation_notice: Optional[str] = None
     refusal_reason: Optional[str] = None
 
-
 class Trace(BaseModel):
-    model: str
-    guardrails: GuardrailTrace
+    model: str = ""
+    guardrails: GuardrailTrace = Field(default_factory=GuardrailTrace)
 
+class Finding(BaseModel):
+    rule_id: str
+    status: Literal["pass", "fail"]
+    evidence: str
+    explanation: str
+    risk: Literal["low", "medium", "high"]
+    proposed_fix: Optional[str] = None
+
+class OutputSummary(BaseModel):
+    overall: Literal["compliant", "non_compliant", "needs_review"]
+    score: int
+    high_risk_flags: List[str]
+
+class AutoRewrite(BaseModel):
+    enabled: bool
+    revised_agenda_or_note: Optional[str] = None
 
 class OutputPayload(BaseModel):
-    summary: Summary
+    summary: OutputSummary
     findings: List[Finding]
-    auto_rewrite: AutoRewrite = AutoRewrite()
+    auto_rewrite: AutoRewrite
     trace: Trace
+
