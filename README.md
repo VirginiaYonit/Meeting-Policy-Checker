@@ -84,6 +84,7 @@ payload = InputPayload(
 
 result = check_meeting(payload)
 print(result.model_dump_json(indent=2))
+```
 
 ## Advantages of the Document-as-Implementation Approach
 No developer bottlenecks – Policy owners update .md file directly.
@@ -91,6 +92,17 @@ No developer bottlenecks – Policy owners update .md file directly.
 * Immediate effect – Policy changes apply at next agent run.
 * Transparency – Output includes the exact policy version applied.
 * Audit-ready – Full traceability from decision to source document.
+
+---
+
+## Testing & CI
+In local runtime and on Hugging Face Spaces, the agent calls the real OpenAI API.  
+In GitHub Actions CI, we run tests with a simulated model (`CI_FAKE_MODEL=1`) to:
+- avoid API costs,
+- keep the pipeline fast and secure,
+- still validate schema compliance and code imports.
+
+This ensures that the build badge stays green without depending on external API calls.
 
 ---
 
@@ -109,7 +121,7 @@ export OPENAI_API_KEY="your-api-key"   # Linux/macOS
 setx OPENAI_API_KEY "your-api-key"     # Windows
 
 Test run:
-python -m meeting_policy_checker.test_basic
+pytest -q
 
 2. Docker
 docker build -t meeting-policy-checker .
@@ -122,16 +134,18 @@ docker run -e OPENAI_API_KEY="your-api-key" meeting-policy-checker
 * Run and interact via API or UI.
 
 ## Configuration
-Parameter	          Description	                                  Default
-OPENAI_API_KEY	    API key for OpenAI	                          required
-MAX_POLICY_CHARS	  Max characters for policy text	              50000
-MAX_MEETING_CHARS	  Max characters for meeting text	              30000
-model_name	        OpenAI model to use	                          "gpt-4.1-mini"
-rewrite	            Enable auto-rewrite suggestions  	            True
-meeting_type	      Type of meeting text (agenda or transcript)	   –
-strictness	        PII mode (normal or strict)	                   –
+| Parameter          | Description                           | Default        |
+|--------------------|---------------------------------------|----------------|
+| OPENAI_API_KEY     | API key for OpenAI                   | required       |
+| MAX_POLICY_CHARS   | Max characters for policy text        | 50000          |
+| MAX_MEETING_CHARS  | Max characters for meeting text       | 30000          |
+| model_name         | OpenAI model to use                  | gpt-4.1-mini   |
+| rewrite            | Enable auto-rewrite suggestions      | True           |
+| meeting_type       | Type of meeting text (agenda/transcript) | –           |
+| strictness         | PII mode (normal or strict)          | –              |
 
-##API Integration Example
+
+## API Integration Example
 python
 from fastapi import FastAPI
 from meeting_policy_checker.agent import check_meeting, InputPayload
@@ -143,7 +157,7 @@ def api_check_meeting(payload: InputPayload):
     return check_meeting(payload).model_dump()
 
 
-##Development Notes
+## Development Notes
 Internal Structure
 
 meeting_policy_checker/
