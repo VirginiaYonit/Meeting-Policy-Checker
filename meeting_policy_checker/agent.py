@@ -145,6 +145,24 @@ Important rules:
         "rewrite": bool(rewrite),
     }
 
+        # Short‑circuit in CI: evita chiamate al modello
+    if os.getenv("CI_FAKE_MODEL") == "1":
+        return OutputPayload(
+            summary={"overall": "needs_review", "score": 0, "high_risk_flags": []},
+            findings=[],
+            auto_rewrite={"enabled": False, "revised_agenda_or_note": None},
+            trace=Trace(
+                model=model_name,
+                guardrails=GuardrailTrace(
+                    input_validated=True,
+                    output_schema_validated=True,
+                    truncation_notice=None,
+                    refusal_reason="CI_FAKE_MODEL"
+                ),
+            ),
+        )
+
+    
     from openai import OpenAI
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
