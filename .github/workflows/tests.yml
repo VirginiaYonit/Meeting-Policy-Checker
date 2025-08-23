@@ -40,5 +40,8 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           CI_FAKE_MODEL: "1"
+          PYTHONPATH: ${{ github.workspace }}
+
         run: |
           pytest -q -k test_basic -vv
+
