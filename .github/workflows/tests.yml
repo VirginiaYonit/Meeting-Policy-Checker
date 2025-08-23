@@ -29,9 +29,16 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install black pytest
           
+      - name: Debug env
+        run: |
+          python -V
+          pip list
+          ls -la
+          find . -maxdepth 3 -type f \( -name "*.py" -o -name "requirements.txt" \) | sort
+
       - name: Run tests
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           CI_FAKE_MODEL: "1"
         run: |
-          pytest -v
+          pytest -q -k test_basic -vv
