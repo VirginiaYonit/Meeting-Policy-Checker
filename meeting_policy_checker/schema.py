@@ -30,18 +30,22 @@ class OrgContext(BaseModel):
     department: Optional[str] = None
     locale: Optional[str] = None
     timezone: Optional[str] = None
-    confidentiality_level: Optional[Literal["public","internal","confidential","restricted"]] = None
+    confidentiality_level: Optional[
+        Literal["public", "internal", "confidential", "restricted"]
+    ] = None
 
 
 class InputPayload(BaseModel):
-    policy_text: str = Field(..., min_length=10, description="Org meeting policy in markdown/text")
+    policy_text: str = Field(
+        ..., min_length=10, description="Org meeting policy in markdown/text"
+    )
     meeting_text: str = Field(..., min_length=10, description="Agenda or transcript")
     meeting_type: MeetingType
     checks: Optional[List[str]] = None
     strictness: Strictness = Strictness.advisory
     org_context: Optional[OrgContext] = None
     max_suggestions: int = 5
-    return_format: Literal["json","markdown","both"] = "json"
+    return_format: Literal["json", "markdown", "both"] = "json"
 
     @validator("max_suggestions")
     def _cap_suggestions(cls, v):
@@ -58,7 +62,7 @@ class Finding(BaseModel):
 
 
 class Summary(BaseModel):
-    overall: Literal["compliant","non_compliant","needs_review"]
+    overall: Literal["compliant", "non_compliant", "needs_review"]
     score: int = Field(ge=0, le=100)
     high_risk_flags: List[str] = []
 

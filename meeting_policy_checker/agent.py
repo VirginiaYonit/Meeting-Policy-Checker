@@ -13,6 +13,7 @@ LOGIC_PATH = Path(__file__).with_name("meeting_policy_checker_logic.md")
 
 # --- Helpers ---------------------------------------------------------------
 
+
 def _load_logic_text() -> str:
     if not LOGIC_PATH.exists():
         return (
@@ -49,14 +50,18 @@ def _refusal_output(reason: str, model_name: str) -> OutputPayload:
                 input_validated=True,
                 output_schema_validated=True,
                 truncation_notice=None,
-                refusal_reason=reason
+                refusal_reason=reason,
             ),
         ),
     )
 
+
 # --- Core ------------------------------------------------------------------
 
-def check_meeting(payload: InputPayload, model_name: str = "gpt-4.1-mini", rewrite: bool = True) -> OutputPayload:
+
+def check_meeting(
+    payload: InputPayload, model_name: str = "gpt-4.1-mini", rewrite: bool = True
+) -> OutputPayload:
     """
     Main entrypoint: validates inputs, builds prompt, calls OpenAI, validates output.
     Returns OutputPayload with guardrail trace. On failure, returns needs_review with reason.
@@ -69,10 +74,14 @@ def check_meeting(payload: InputPayload, model_name: str = "gpt-4.1-mini", rewri
         return _refusal_output("Missing or trivial policy/meeting text.", model_name)
 
     if payload.meeting_type.value not in {"agenda", "transcript"}:
-        return _refusal_output("Invalid meeting_type. Must be 'agenda' or 'transcript'.", model_name)
+        return _refusal_output(
+            "Invalid meeting_type. Must be 'agenda' or 'transcript'.", model_name
+        )
 
     if _basic_pii_sniff(meeting) and payload.strictness.value == "strict":
-        return _refusal_output("Potential PII detected in meeting_text under strict mode.", model_name)
+        return _refusal_output(
+            "Potential PII detected in meeting_text under strict mode.", model_name
+        )
 
     policy, policy_trunc = _truncate(policy, MAX_POLICY_CHARS)
     meeting, meeting_trunc = _truncate(meeting, MAX_MEETING_CHARS)
@@ -83,17 +92,23 @@ def check_meeting(payload: InputPayload, model_name: str = "gpt-4.1-mini", rewri
 
     # ✅ NUOVA LOGICA: se org_context non è fornito, estrailo dal Confidentiality level del meeting
     if not payload.org_context:
-        match = re.search(r"Confidentiality level\s*:\s*([^\n\r]+)", meeting, re.IGNORECASE)
+        match = re.search(
+            r"Confidentiality level\s*:\s*([^\n\r]+)", meeting, re.IGNORECASE
+        )
         if match:
             level = match.group(1).strip()
             payload.org_context = type(
-                "OrgContext", (), {"dict": lambda self: {"confidentiality_level": level}}
+                "OrgContext",
+                (),
+                {"dict": lambda self: {"confidentiality_level": level}},
             )()
 
     logic_text = _load_logic_text()
 
     # Compose prompt
-    system_prompt = logic_text + """
+    system_prompt = (
+        logic_text
+        + """
     You are a meeting policy compliance checker.
     Your task:
     1. Read `policy_text` and `meeting_text`.
@@ -136,6 +151,7 @@ def check_meeting(payload: InputPayload, model_name: str = "gpt-4.1-mini", rewri
     - All fields must be present, even if empty or null.
     - Output must be a valid JSON object. No markdown, no commentary.
     """
+    )
 
     user_prompt = {
         "policy_text": policy,
@@ -150,6 +166,7 @@ def check_meeting(payload: InputPayload, model_name: str = "gpt-4.1-mini", rewri
     }
 
     from openai import OpenAI
+
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     def _call(response_format_json=True):
@@ -158,7 +175,7 @@ def check_meeting(payload: InputPayload, model_name: str = "gpt-4.1-mini", rewri
             temperature=0.2,
             messages=[
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": f"INPUT JSON:\n{user_prompt}"}
+                {"role": "user", "content": f"INPUT JSON:\n{user_prompt}"},
             ],
             response_format={"type": "json_object"} if response_format_json else None,
         )
@@ -173,7 +190,9 @@ def check_meeting(payload: InputPayload, model_name: str = "gpt-4.1-mini", rewri
         try:
             total_rules = len(out.findings)
             passed_rules = sum(1 for f in out.findings if f.status == "pass")
-            out.summary["score"] = int((passed_rules / total_rules) * 100) if total_rules > 0 else 0
+            out.summary["score"] = (
+                int((passed_rules / total_rules) * 100) if total_rules > 0 else 0
+            )
         except Exception:
             pass
         # Enrich trace
@@ -191,7 +210,9 @@ def check_meeting(payload: InputPayload, model_name: str = "gpt-4.1-mini", rewri
             try:
                 total_rules = len(out.findings)
                 passed_rules = sum(1 for f in out.findings if f.status == "pass")
-                out.summary["score"] = int((passed_rules / total_rules) * 100) if total_rules > 0 else 0
+                out.summary["score"] = (
+                    int((passed_rules / total_rules) * 100) if total_rules > 0 else 0
+                )
             except Exception:
                 pass
             out.trace.guardrails.input_validated = True
