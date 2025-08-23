@@ -2,6 +2,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional, Literal, Dict, Any
 from pydantic import BaseModel, Field
+from typing import Optional
 
 class MeetingType(str, Enum):
     agenda = "agenda"
@@ -12,8 +13,11 @@ class Strictness(str, Enum):
     strict = "strict"
 
 class OrgContext(BaseModel):
-    value: str
-
+    department: Optional[str] = None
+    locale: Optional[str] = None
+    timezone: Optional[str] = None
+    confidentiality_level: Optional[str] = None
+    
 class InputPayload(BaseModel):
     policy_text: str = Field(min_length=1)
     meeting_text: str = Field(min_length=1)
@@ -56,4 +60,5 @@ class OutputPayload(BaseModel):
     findings: List[Finding]
     auto_rewrite: AutoRewrite
     trace: Trace
+
 
