@@ -21,6 +21,7 @@
 
 <p align="center">
 An AI-powered compliance agent that evaluates meeting content against organizational policies, using the <b>Document-as-Implementation</b> pattern for maximum transparency and flexibility.
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/VirginiaYonit/meeting-policy-checker)
 </p>
 
 ---
