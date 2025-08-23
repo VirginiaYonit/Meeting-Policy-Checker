@@ -1,12 +1,21 @@
+import os, sys
+
+# Aggiungi la root del repo al PYTHONPATH
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
+# Aggiungi anche eventuale src/ (se usata)
+SRC = os.path.join(ROOT, "src")
+if os.path.isdir(SRC) and SRC not in sys.path:
+    sys.path.insert(0, SRC)
+
 def test_imports_and_call(monkeypatch):
-    import os
     os.environ["CI_FAKE_MODEL"] = "1"
 
-    # Import puro
     from meeting_policy_checker.agent import check_meeting
     from meeting_policy_checker.schema import InputPayload, MeetingType, Strictness
 
-    # Mock client (non usato se CI_FAKE_MODEL=1, ma sicuro)
     class DummyClient:
         class chat:
             class completions:
@@ -34,3 +43,5 @@ def test_imports_and_call(monkeypatch):
 
     out = check_meeting(payload, rewrite=False)
     assert out.summary.overall in {"needs_review", "compliant", "non_compliant"}
+
+
