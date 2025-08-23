@@ -17,6 +17,10 @@
   <a href="https://huggingface.co/spaces/virginialevy/meeting-policy-checker">
     <img src="https://img.shields.io/badge/🤗%20Hugging%20Face-Space-orange" alt="Hugging Face Space">
   </a>
+  <a href="https://github.com/VirginiaYonit/meeting-policy-checker/releases">
+  <img src="https://img.shields.io/github/v/release/VirginiaYonit/meeting-policy-checker" alt="GitHub release">
+</a>
+
 </p>
 
 <p align="center">
