@@ -109,7 +109,7 @@ export OPENAI_API_KEY="your-api-key"   # Linux/macOS
 setx OPENAI_API_KEY "your-api-key"     # Windows
 
 Test run:
-python -m meeting_policy_checker.test_run
+python -m meeting_policy_checker.test_basic
 
 2. Docker
 docker build -t meeting-policy-checker .
