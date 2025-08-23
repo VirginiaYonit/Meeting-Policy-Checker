@@ -38,7 +38,6 @@ jobs:
 
       - name: Run tests
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           CI_FAKE_MODEL: "1"
           PYTHONPATH: ${{ github.workspace }}
 
@@ -50,6 +49,7 @@ jobs:
           pwd
           ls -la
           find . -maxdepth 3 -type d -name "meeting_policy_checker" -print
+
 
 
 
