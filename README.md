@@ -198,30 +198,28 @@ Meeting Policy Checker was created through a design-driven AI process focused on
 Rather than a “developer-only” pipeline, the project grew iteratively by combining:
 
 🧩 Modular architecture – clear separation between logic file, schemas, and agent core
+
 🗣️ Prompt engineering & pattern testing – ensuring structured, auditable outputs
+
 📄 Document-as-Implementation – meeting rules defined directly in Markdown, editable by anyone
+
 🔁 Feedback loop – refined through real tests, CI integration, and deployment constraints
 
 This reflects principles of responsible AI: intelligibility, flexibility, and human-in-the-loop control.
 
 🤖 Built with ChatGPT – My Invisible Partner
+
 This agent was developed in close collaboration with ChatGPT, which acted as:
 
-A coding assistant, translating compliance logic into working Python tools
+- A coding assistant, translating compliance logic into working Python tools
 
-A co-designer, helping shape architecture and workflow choices
+- A co-designer, helping shape architecture and workflow choices
 
-A testing partner, suggesting CI strategies to validate schema and guardrails
+- A testing partner, suggesting CI strategies to validate schema and guardrails
 
-A documentation sparring partner, supporting the writing of clear, transparent technical notes
+- A documentation sparring partner, supporting the writing of clear, transparent technical notes
 
-This README — like the code and design decisions — is the product of human–AI collaboration, grounded in reflection and iteration.
-
-Curious how micro-AI agents could support your business?
-
-[Contact me](https://www.linkedin.com/in/virginia-levy-abulafia/)
- | [Try the Demo](https://huggingface.co/spaces/virginialevy/meeting-policy-checker)
-
+This README — like the code and design decisions — is the product of human–AI collaboration, grounded in reflection and iteration
 
 ## AI Responsible Use Policy
 
@@ -274,3 +272,8 @@ This policy was approved on 30/08/2025 and will be reviewed within 12 months.
 AI System Owner: Virginia Levy Abulafia
 Digital or equivalent signature: Virginia Levy Abulafia
 
+
+Curious how micro-AI agents could support your business?
+
+[Contact me](https://www.linkedin.com/in/virginia-levy-abulafia/)
+ | [Try the Demo](https://huggingface.co/spaces/virginialevy/meeting-policy-checker)
