@@ -197,17 +197,18 @@ Execution Flow:
 Meeting Policy Checker was created through a design-driven AI process focused on transparency, modularity, and usability.
 Rather than a “developer-only” pipeline, the project grew iteratively by combining:
 
-🧩 Modular architecture – clear separation between logic file, schemas, and agent core
+- 🧩 Modular architecture – clear separation between logic file, schemas, and agent core
 
-🗣️ Prompt engineering & pattern testing – ensuring structured, auditable outputs
+- 🗣️ Prompt engineering & pattern testing – ensuring structured, auditable outputs
 
-📄 Document-as-Implementation – meeting rules defined directly in Markdown, editable by anyone
+- 📄 Document-as-Implementation – meeting rules defined directly in Markdown, editable by anyone
 
-🔁 Feedback loop – refined through real tests, CI integration, and deployment constraints
+- 🔁 Feedback loop – refined through real tests, CI integration, and deployment constraints
 
-This reflects principles of responsible AI: intelligibility, flexibility, and human-in-the-loop control.
+**This reflects principles of responsible AI: intelligibility, flexibility, and human-in-the-loop control.**
 
-🤖 Built with ChatGPT – My Invisible Partner
+
+## 🤖 Built with ChatGPT – My Invisible Partner
 
 This agent was developed in close collaboration with ChatGPT, which acted as:
 
