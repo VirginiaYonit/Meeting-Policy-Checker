@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo_VLA_small.jpg" alt="Meeting Policy Checker Logo" width="150"/>
+  <img src="assets/logo_vla_small.jpg" alt="Meeting Policy Checker Logo" width="150"/>
 </p>
 
 <h1 align="center">Meeting Policy Checker Agent</h1>
