@@ -269,12 +269,13 @@ The organization commits to:
 - Integrate user feedback into continuous improvement.
 
 **✍️ Approval**
+
 This policy was approved on 30/08/2025 and will be reviewed within 12 months.
 AI System Owner: Virginia Levy Abulafia
 Digital or equivalent signature: Virginia Levy Abulafia
 
 
-Curious how micro-AI agents could support your business?
+**Curious how micro-AI agents could support your business?**
 
 [Contact me](https://www.linkedin.com/in/virginia-levy-abulafia/)
  | [Try the Demo](https://huggingface.co/spaces/virginialevy/meeting-policy-checker)
