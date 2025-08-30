@@ -224,51 +224,51 @@ This README — like the code and design decisions — is the product of human�
 
 ## AI Responsible Use Policy
 
-System: Meeting Policy Checker
+**System: Meeting Policy Checker
 Version: 1.0
 Date: August 30, 2025
 Next review: August 2026
-AI System Owner: Virginia Levy Abulafia
+AI System Owner: Virginia Levy Abulafia**
 
-🎯 Purpose
+**🎯 Purpose**
 The Meeting Policy Checker is a micro–AI agent designed to support the verification of meeting agendas and transcripts against predefined organizational policies.
 The system produces structured reports (JSON/Markdown) with compliance scores, findings, and proposed fixes. It does not take autonomous decisions: it requires textual input and assumes human supervision for interpretation and use of the results.
 
-🌱 Guiding Principles
+**🌱 Guiding Principles**
 
-Transparency
+- Transparency
 The agent is designed to be understandable: compliance logic is defined in editable Markdown documents and outputs follow a strict, verifiable JSON schema. Users are clearly informed about what the system does and its limitations.
 
-Mandatory Human Oversight
+- Mandatory Human Oversight
 The system does not replace compliance officers or meeting managers.
 Reports must be interpreted and validated by authorized staff. No organizational decision is applied automatically.
 
-Data Minimization
+- Data Minimization
 The agent only processes policy and meeting texts provided by the user. It does not retain or log personal data beyond execution. In CI/CD test mode, no external model calls are performed.
 
-Content Neutrality
+- Content Neutrality
 Outputs are limited to technical and organizational compliance criteria, and never generate discriminatory or sensitive content. The system is not suitable for processing medical, legal, or other critical data.
 
-Proportionate Responsibility
+- Proportionate Responsibility
 The organization guarantees technical functioning within declared limits. It is not responsible for misinterpretations or improper use of the reports by users.
 
-Continuous Improvement
+- Continuous Improvement
 The system is subject to periodic review. Every update to policy logic or features will be documented transparently.
 
-📌 Organizational Commitments
+**📌 Organizational Commitments**
 The organization commits to:
 
-Operate in line with ISO/IEC 42001:2023, the EU AI Act, and GDPR where applicable;
+- Operate in line with ISO/IEC 42001:2023, the EU AI Act, and GDPR where applicable;
 
-Document risk and impact assessments;
+- Document risk and impact assessments;
 
-Release only tested and traceable versions;
+- Release only tested and traceable versions;
 
-Provide users with complete information on system limits and intended uses;
+- Provide users with complete information on system limits and intended uses;
 
-Integrate user feedback into continuous improvement.
+- Integrate user feedback into continuous improvement.
 
-✍️ Approval
+**✍️ Approval**
 This policy was approved on 30/08/2025 and will be reviewed within 12 months.
 AI System Owner: Virginia Levy Abulafia
 Digital or equivalent signature: Virginia Levy Abulafia
