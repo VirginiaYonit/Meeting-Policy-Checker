@@ -1,1 +1,48 @@
+# italian example
+
+Policy aziendale
+
+1. Timeboxing – Ogni punto all’ordine del giorno deve avere una durata specificata in minuti.
+2. Ruoli – Devono essere assegnati un facilitatore, un verbalizzatore e un controllore del tempo.
+3. Obiettivo – L’obiettivo della riunione deve essere chiaro e misurabile.
+4. Materiali preparatori – Devono essere condivisi almeno 24 ore prima dell’incontro e menzionati nell’agenda.
+5. Avviso di registrazione – Se la riunione è registrata, deve essere dichiarato esplicitamente.
+6. Privacy – Non devono essere condivise informazioni confidenziali con partecipanti non autorizzati.
+7. Registro decisioni – Tutte le decisioni prese devono essere documentate con il nome del responsabile.
+8. Follow-up – Devono essere definiti i prossimi passi con scadenze precise.
+Confidentiality level: Public
+
+
+---
+
+Meeting text (agenda or transcript)
+
+Titolo: Aggiornamento settimanale sullo sviluppo prodotto
+Confidentiality level: Public
+Obiettivo: Aggiornare il team sugli avanzamenti, discutere ostacoli e definire le prossime azioni per il rilascio della versione 2.0.
+
+Materiali preparatori: Documento “Sprint_Review_V2.pdf” inviato via email a tutti i partecipanti il giorno precedente.
+
+Agenda:
+1. Backend API deployment – Owner: Luca (15 min)
+2. UX testing results – Owner: Sara (20 min)
+3. Revisione milestone – Owner: Chiara (10 min)
+4. Pianificazione rilascio – Owner: Marco (15 min)
+
+Ruoli:
+Facilitatore: Marco
+Verbalizzatore: Giulia
+Controllore del tempo: Paolo
+
+Avviso registrazione: La riunione verrà registrata per riferimento interno.
+
+Decisioni prese:
+- Confermato il completamento del modulo di autenticazione – Resp: Luca
+- Accettata la proposta di revisione UI – Resp: Sara
+
+Follow-up:
+- Luca aggiornerà la documentazione tecnica entro il 15 agosto
+- Sara invierà il report di usabilità entro il 17 agosto
+- Marco preparerà la timeline aggiornata entro il 18 agosto
+
 
