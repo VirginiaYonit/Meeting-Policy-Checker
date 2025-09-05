@@ -237,7 +237,7 @@ The system produces structured reports (JSON/Markdown) with compliance scores, f
 **🌱 Guiding Principles**
 
 - Transparency
-The agent is designed to be understandable: compliance logic is defined in editable Markdown documents and outputs follow a strict, verifiable JSON schema. Users are clearly informed about what the system does and its limitations.
+The agent is designed to be understandable: compliance logic is defined in editable Markdown documents and outputs follow a strict, verifiable JSON schema, but no machine-readable logs are stored. Reports are returned as structured JSON during runtime only. Users are clearly informed about what the system does and its limitations.
 
 - Mandatory Human Oversight
 The system does not replace compliance officers or meeting managers.
@@ -270,10 +270,7 @@ The organization commits to:
 
 **✍️ Approval**
 
-This policy was approved on 30/08/2025 and will be reviewed within 12 months.
-AI System Owner: Virginia Levy Abulafia
-Digital or equivalent signature: Virginia Levy Abulafia
-
+This policy was approved on September 4, 2025 and will be reviewed within 12 months.
 
 **Curious how micro-AI agents could support your business?**
 
