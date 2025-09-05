@@ -64,11 +64,16 @@ The agent follows the **MATE** design guidelines:
    - Adds guardrail trace data.
 
 ## File Structure
-meeting_policy_checker/
-│
-├── agent.py # Main agent logic
-├── schema.py # Pydantic schemas for input/output
-├── meeting_policy_checker_logic.md # Editable human-readable policy rules
+meeting-policy-checker/
+├── agent.py
+├── schema.py
+├── README.md
+├── docs/
+│   ├── AI_Policy.md
+│   ├── meeting_policy_checker_logic.md
+│   ├── Risk_Log.md
+│   └── README.md 
+
 
 
 ## Example Usage
