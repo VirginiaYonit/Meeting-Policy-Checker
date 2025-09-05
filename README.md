@@ -226,8 +226,8 @@ This README — like the code and design decisions — is the product of human�
 
 **System: Meeting Policy Checker
 Version: 1.0
-Date: August 30, 2025
-Next review: August 2026
+Date: September 4, 2025 
+Next review: September 2026 
 AI System Owner: Virginia Levy Abulafia**
 
 **🎯 Purpose**
