@@ -24,14 +24,14 @@
 </p>
 
 <p align="center">
-An AI-powered compliance agent that evaluates meeting content against organizational policies, using the <b>Document-as-Implementation</b> pattern for maximum transparency and flexibility.
+An AI-powered compliance bilingual agent that evaluates meeting content against organizational policies, using the <b>Document-as-Implementation</b> pattern for maximum transparency and flexibility.
 </p>
 
 ---
 
 ## Overview
 The **Meeting Policy Checker Agent** is an AI-powered compliance tool that evaluates meeting content (agenda or transcript) against organizational policies, returning a structured JSON report.  
-It implements the **Document-as-Implementation** pattern, loading human-readable policy documents at runtime and using them directly as the system’s decision logic.
+It implements the **Document-as-Implementation** pattern, loading human-readable policy documents (in english or italian) at runtime and using them directly as the system’s decision logic.
 
 ## Key Features
 - **Dynamic Policy Loading** – Reads the latest meeting policy from `meeting_policy_checker_logic.md`, so non-technical staff can update rules without code changes.
@@ -73,7 +73,7 @@ meeting-policy-checker/
 │   ├── meeting_policy_checker_logic.md
 │   ├── Risk_Log.md
 │   └── README.md 
-
+├── examples/sample_agenda #italian example
 
 
 ## Example Usage
